@@ -22,14 +22,15 @@
 <body>
     <div class="container">
     @auth
+    <div style="border: 3px solid rgb(179, 172, 213) ;padding:10px" class="registeration-area">
         <p>
             Congrats You are logged in.
         </p>
-
     <form action="{{url('logout')}}" method="post">
         @csrf
         <input type="submit" value="Logout">
     </form>
+</div>
 
     <div style="border: 3px solid rgb(22, 1, 142) ;padding:10px" class="registeration-area">
         <h2>Login</h2>
