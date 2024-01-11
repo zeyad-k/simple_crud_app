@@ -8,16 +8,27 @@
 </head>
 <body>
     <div class="container">
-        <div style="border: 3px solid rgb(216, 195, 198) ;padding:10px" class="registeration-area">
-            <h2>Register</h2>
-            <form action="{{url('register')}}" method="post">
-                @csrf
-                <input type="text" name="name" class="name" placeholder="yourn name">
-                <input type="email" name="email" class="email" placeholder="email">
-                <input type="password" name="password" class="password" placeholder="password">
-                <input type="submit" value="Submit" name="submit">
-            </form>
-        </div>
+    @auth
+        <p>
+            Congrats You are logged in.
+        </p>
+
+    <form action="{{url('logout')}}" method="post">
+        <input type="submit" value="Logout">
+    </form>
+    
+     @else
+     <div style="border: 3px solid rgb(216, 195, 198) ;padding:10px" class="registeration-area">
+        <h2>Register</h2>
+        <form action="{{url('register')}}" method="post">
+            @csrf
+            <input type="text" name="name" class="name" placeholder="yourn name">
+            <input type="email" name="email" class="email" placeholder="email">
+            <input type="password" name="password" class="password" placeholder="password">
+            <input type="submit" value="Submit" name="submit">
+        </form>
+    </div>
+    @endauth
     </div>
 </body>
 </html>
