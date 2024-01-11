@@ -31,7 +31,20 @@
         <input type="submit" value="Logout">
     </form>
 
+    <div style="border: 3px solid rgb(22, 1, 142) ;padding:10px" class="registeration-area">
+        <h2>Login</h2>
+        {{-- create post form --}}
+        <form action="{{url('create-post')}}" method="post">
+            @csrf
+            <input type="text" name="post_title" class="title" placeholder="Post title">
+            <textarea name="post_body" placeholder="Post content....." ></textarea>
+            <input type="submit" value="Create Post" name="submit">
+        </form>
+    </div>
+
+
      @else
+ {{-- register form --}}
      <div style="border: 3px solid rgb(216, 195, 198) ;padding:10px" class="registeration-area">
         <h2>Register</h2>
         <form action="{{url('register')}}" method="post">
@@ -42,7 +55,7 @@
             <input type="submit" value="Submit" name="submit">
         </form>
     </div>
-
+{{-- login form --}}
      <div style="border: 3px solid rgb(61, 234, 93) ;padding:10px" class="registeration-area">
         <h2>Login</h2>
         <form action="{{url('login')}}" method="post">
