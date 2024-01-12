@@ -50,8 +50,8 @@
 <div class="post" style="background-color: #decece; padding:10px; margin:10px;">
     <h3>{{$post['post_title']}}</h3>
     {{$post['post_body']}}
-    <p><a href="/edit-post/{{$post->id}}">Edit</a></p>
-    <form action="/delete-post-{{$post->id}}" method="post">
+    <p><a href="{{url('edit-post')}}/{{$post->id}}">Edit</a></p>
+    <form action="{{url('delete-post')}}/{{$post->id}}" method="post">
     @csrf
     @method('DELETE')
     <input type="submit" value="Delete">

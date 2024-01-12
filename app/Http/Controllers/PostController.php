@@ -20,6 +20,31 @@ class PostController extends Controller
         return redirect('/');
     }
 
+    public function actullyUpdatePost(Post $post, Request $request)
+    {
+        if (auth()->user()->id !== $post['user_id']) {
+            return redirect('/');
+        }
+        $incomingFields = $request->validate([
+            'post_title' => ['required'],
+            'post_body' => ['required'],
+        ]);
+        $incomingFields['post_title'] = strip_tags($incomingFields['post_title']);
+        $incomingFields['post_body'] = strip_tags($incomingFields['post_body']);
+
+        $post->update($incomingFields);
+        return redirect('/');
+
+    }
+    public function showEditScreen(Post $post)
+    {
+        if (auth()->user()->id !== $post['user_id']) {
+            return redirect('/');
+        }
+
+        return view('edit-post', ['post' => $post]);
+    }
+
     //     public function createPost(Request $request)
 //     {
 // $incomingFields = $request->validate([
