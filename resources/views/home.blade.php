@@ -32,9 +32,9 @@
     </form>
 </div>
 
-    <div style="border: 3px solid rgb(22, 1, 142) ;padding:10px" class="registeration-area">
-        <h2>Login</h2>
         {{-- create post form --}}
+    <div style="border: 3px solid rgb(22, 1, 142) ;padding:10px" class="registeration-area">
+        <h2>Create Post</h2>
         <form action="{{url('create-post')}}" method="post">
             @csrf
             <input type="text" name="post_title" class="title" placeholder="Post title">
@@ -42,6 +42,17 @@
             <input type="submit" value="Create Post" name="submit">
         </form>
     </div>
+
+        {{-- view posts --}}
+    <div style="border: 3px solid rgb(255, 7, 160) ;padding:10px" class="registeration-area">
+        <h2>All User Posts</h2>
+        @foreach ($posts as $post)
+<div class="post" style="background-color: #decece; padding:10px; margin:10px;">
+    <h3>{{$post['post_title']}}</h3>
+    {{$post['post_body']}}
+</div>
+        @endforeach
+     </div>
 
 
      @else
