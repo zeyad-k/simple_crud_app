@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -17,8 +18,12 @@ use App\Http\Controllers\UserController;
 */
 
 Route::get('/', function () {
-    // $posts = Post::all();
-    $posts = Post::where('user_id', auth()->id())->get();
+    $posts = [];
+    if (auth()->check()) {
+        $posts = auth()->user()->usersCoolPosts()->latest()->get();
+    }
+    // $posts = Post::all(); // this get all posts
+    //$posts = Post::where('user_id', auth()->id())->get(); // this work but dont use the relationship
     return view('home', ['posts' => $posts]);
 });
 

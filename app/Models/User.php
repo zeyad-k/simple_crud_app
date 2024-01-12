@@ -12,6 +12,11 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    public function usersCoolPosts()
+    {
+        return $this->hasMany(Post::class, 'user_id');
+    }
+
     /**
      * The attributes that are mass assignable.
      *
@@ -43,8 +48,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
-    public function usersCoolPosts()
-    {
-        return $this->hasMany(Post::class, 'user_id');
-    }
 }
